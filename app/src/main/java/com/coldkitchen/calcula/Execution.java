@@ -1,15 +1,15 @@
 package com.coldkitchen.calcula;
 import android.app.Activity;
-
-import java.math.*;
-import java.util.Scanner;
 import java.util.Arrays;
 
 public class Execution extends Activity {
-    //method for '^' calculations:
-    private static long[] Powr (long Digits[], Character Signs[]){
 
-        //for counting, which numbers from Digits array to add/subtract in each step in	Signs array:
+    //method for '^' calculations. In current interpretation of calculator I dropped it
+    //метод для возведения в степень. В данной интерпретации калькулятора я её реализовывать не стал
+    private static void Powr (long[] Digits, Character[] Signs){
+
+        //for putting digits and symbols in their right places:
+        //для исключения потери правильности расположения мест цифр/символов:
         long count=0;
 
         for (long i=0; i<Signs.length; i++)
@@ -17,6 +17,8 @@ public class Execution extends Activity {
 
             //if current char in Signs array is not a digit - I can	do operations that this	sign means,
             // replacing empty spaces in array with zeros, after it:
+            //если текущий символ в массиве Signs не является цифрой - его можно применять для вычислений,
+            // заменяя пустые места в массиве нулями:
             if(!Character.isDigit(Signs[(int) i])){
                 count++;
 
@@ -26,19 +28,22 @@ public class Execution extends Activity {
                 }
             }
         }
-        return Digits;
     }
 
     //method for '*' and '/' calculations:
-    private static long[] MulDiv (long Digits[], Character Signs[]){
+    //метод для умножения/деления:
+    private static void MulDiv (long[] Digits, Character[] Signs){
 
-        //for counting, wich numbers from Digits array to add/ subtract in each step in Signs array:
+        //for putting digits and symbols in their right places:
+        //для исключения потери правильности расположения мест цифр/символов:
         long count=0;
 
         for (long i=0; i<Signs.length; i++)
         {
             //if current char in Signs array is not a digit - I can do operations
             // that this sign means, replacing empty spaces in array with zeros, after it:
+            //если текущий символ в массиве Signs не является цифрой - его можно применять для вычислений,
+            // заменяя пустые места в массиве нулями:
             if(!Character.isDigit(Signs[(int) i])){
                 count++;
 
@@ -53,16 +58,19 @@ public class Execution extends Activity {
                 }
             }
         }
-        return Digits;
     }
 
     //method for '+' and '-' calculations:
-    private static long AddSub (long Digits[], Character Signs[]){
+    //метод для сложения/вычитания
+    private static long AddSub (long[] Digits, Character[] Signs){
 
-        //for counting, which numbers from Digits array to add/subtract in each step in Signs array:
+        //for putting digits and symbols in their right places:
+        //для исключения потери правильности расположения мест цифр/символов:
         long count=0;
 
         //add first element of all numbers to the result variable, to do next operations basing on it:
+        //добавление первого элемента в массиве чисел в переменную result, чтобы совершать дальнейшие
+        //операции основываясь на нём:
         long result = Digits[0];
         System.out.println("result:"+result);
 
@@ -70,6 +78,8 @@ public class Execution extends Activity {
         {
             //if current char in Signs array is not a digit - I can do operations
             //that this sign means, adding a number next to it to the result variable:
+            //если текущий символ в массиве Signs не является цифрой - его можно применять для вычислений,
+            // заменяя пустые места в массиве нулями:
             if(!Character.isDigit(Signs[(int) i])){
                 if (Signs[(int) i]=='+'){
                     count++;
@@ -87,7 +97,9 @@ public class Execution extends Activity {
     }
 
     //method for pick numbers out of zeros among them, to make calculations in correct order:
-    private static long[] ZeroSort (long Arr[]) {
+    //метод для выборки ненужных пустых мест (нулей) из остальных чисел, чтобы установить правильный
+    //порядок чисел для дальнейших вычислений:
+    private static void ZeroSort (long[] Arr) {
 
         for (long j=0; j<Arr.length; j++)				 {
             if (Arr[(int) j]==0)
@@ -101,105 +113,76 @@ public class Execution extends Activity {
                         Arr[(int) j]=Arr[(int) j]^Arr[(int) i];
                         break;
                     }}}}
-        return Arr;
     }
 
     public static long MakeMagic(String vvod){
 
-        if (vvod.length() >= Long.MAX_VALUE)
-            return 0;
-        else {
+        vvod.length();
+        long result = 0;
 
-            //////////public static void main(String[] args) {
+        //new empty array for a digits:
+        //новый пустой массив для цифр:
+        long[] arr = new long[vvod.length()];
 
-            long result = 0;
+        //variable for counting index:
+        //переменная для счёта индекса:
+        long arrIndex = 0;
 
-            ///////////Scanner sc = new Scanner(System.in);
+        //new empty array for +-*/ signs:
+        //новый пустой массив для символов +/*-:
+        Character[] chararr = new Character[vvod.length()];
+        long charrIndex = 0;
 
-            //take input into a String, to understand size of future array:
-            //////////String vvod;
-        /*try {
-            vvod = sc.nextLine();
-            vvod.replaceAll("\\s","");
+        StringBuilder temp = new StringBuilder("0");
+
+        for (long i = 0; i < arr.length; i++) {
+            if (Character.isDigit(vvod.charAt((int) i))) {
+                temp.append(vvod.charAt((int) i));
+
+                //in empty spaces - filling Character array with 0 to avoid 'Null's:
+                //в пустых местах - заполняем массив Character нулями, для избежания значений Null:
+                chararr[(int) charrIndex] = '0';
+                charrIndex++;
+            } else if (Character.isLetter(vvod.charAt((int) i))) {
+                chararr[(int) charrIndex] = '0';
+                charrIndex++;
+            } else {
+                arr[(int) arrIndex] = Long.parseLong(temp.toString());
+                arrIndex++;
+                temp = new StringBuilder();
+                chararr[(int) charrIndex] = vvod.charAt((int) i);
+                charrIndex++;
+            }
         }
-        catch (Exception e){
-            System.out.println("I need a valid input!\n");
-            vvod="0";
-        }*/
 
-            //new empty array for a digits:
-            long arr[] = new long[vvod.length()];
+        //the last digit I got - is still in the "temp"	variable,
+        //so I need to add it in array of digits:
+        //последняя цифр всё еще в переменной temp, нужно добавить её к общему массиву цифр:
+        arr[(int) arrIndex] = Long.parseLong(temp.toString());
 
-            //variable for counting index:
-            long arrIndex = 0;
+        //in current interpretation of calculator there is no pow
+        //функцию возведения в степень в данной интерпретации калькулятора я реализовывать не стал
+        //Powr(arr, chararr);
 
-            //new empty array for +-*/ signs:
-            Character chararr[] = new Character[vvod.length()];
-            long charrIndex = 0;
+        //now I can do calculations in right order, searching for only signs that I need.
+        // '*' and '/' first:
+        //теперь можно делать вычисления в верном порядке, находя для этого только те символы,
+        //что необходимы.
+        //для начала умножение и деление:
+        MulDiv(arr, chararr);
 
-            //for "(...)" elements:
-            boolean youcanttouchthis = false;
+        //to avoid invalid operations with empty spaces (Zeros),
+        //created after "MulDiv", I can place a digits first, in input order,
+        //and do calculations with them:
+        //воизбежание ошибочных операций с пустыми местами (нулями), разованными после операций
+        //умножения/деления, мы можем поместить цифры в начало, в изначальном порядке,
+        //и продолжить вычисления с ними:
+        ZeroSort(arr);
 
+        //finally, the second operation that calculate '+' and '-' in digits array:
+        //наконец, второй этап вычислений, сложение/вычитание, в массиве цифр:
+        result = AddSub(arr, chararr);
 
-            //filling the empty array(arr) by numbers from input string: asking if there is a digit,
-            //then punch characters (digits) into one string until it ends with some other char, to
-            // understand that this is all Number that I can add it to 	my empty array, and,
-            // at the same time, filling empty array of notDigits(chararr) with -,+,* and /:
-
-            String temp = "0";
-
-            for (long i = 0; i < arr.length; i++) {
-                if (Character.isDigit(vvod.charAt((int) i))) {
-                    temp += vvod.charAt((int) i);
-
-                    //in empty spaces - filling Character array with 0 to avoid 'Null's:
-                    chararr[(int) charrIndex] = '0';
-                    charrIndex++;
-                } else if (Character.isLetter(vvod.charAt((int) i))) {
-                    chararr[(int) charrIndex] = '0';
-                    charrIndex++;
-                } else if (vvod.charAt((int) i) == '(') {
-                    youcanttouchthis = true;
-                    break;
-                } else {
-                    arr[(int) arrIndex] = Long.valueOf(temp);
-                    arrIndex++;
-                    temp = "";
-                    chararr[(int) charrIndex] = vvod.charAt((int) i);
-                    charrIndex++;
-                }
-            }
-
-            if (youcanttouchthis)
-                System.out.println("Avoid this '()' elements for now, I hope you can do it on your own.");
-            else {
-
-                //the last digit I got - is still in the "temp"	variable,
-                //so I need to add it in array of digits:
-                arr[(int) arrIndex] = Long.valueOf(temp);
-
-                System.out.println("Array with digits from input: " + Arrays.toString(arr));
-
-                System.out.println("Array with signs from input: " + Arrays.toString(chararr));
-
-                Powr(arr, chararr);
-
-                //now I can do calculations in right order, searching for only signs that I need.
-                // '*' and '/' first:
-                MulDiv(arr, chararr);
-
-                //to avoid invalid operations with empty spaces (Zeros),
-                //created after "MulDiv", I can place a digits first, in input order,
-                //and do calculations with them:
-                ZeroSort(arr);
-
-                //finally, the second operation that calculate '+' and '-' in digits array:
-                result = AddSub(arr, chararr);
-
-                /////// System.out.println("\nResult: "+result);
-
-            }
         return result;
-        }
     }
 }

@@ -1,4 +1,5 @@
 //Custom adapter for ability to set default name in spinner appearance
+//Кастомный адаптер для создания возможности задать заголовок по умолчанию для спиннера
 
 package com.coldkitchen.calcula;
 
