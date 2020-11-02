@@ -543,7 +543,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (position == 0){
                         formulaDelete.setVisibility(View.INVISIBLE);
-                        CustomAdapter.flag = false;
 
                         //Updating Spinner after making manually changes:
                         adapter.getView(position, view, parent);
