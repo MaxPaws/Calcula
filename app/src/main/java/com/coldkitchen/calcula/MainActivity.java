@@ -129,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
     //Метод для создания нового всплывающего диалогового окна с изображением и ссылкой на сайт
     //по нажатию кнопки:
     private void breadWindow(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog_Alert);
 
         builder.setPositiveButton("There you go", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/paypalme/coldkitchen"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://taplink.cc/redredstripe"));
                 startActivity(intent);
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 isThereDig = false;
                 thereIsEq = true;
                 Checker = false;
+
 
                 //'=' founded and we can not do calculations yet
                 //'=' найден в строке - вычисления производить пока нельзя
@@ -274,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("1");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -291,6 +293,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("2");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -308,6 +311,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("3");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -325,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("4");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -342,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("5");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -359,6 +365,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("6");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -376,6 +383,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("7");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -393,6 +401,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("8");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -410,6 +419,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("9");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -427,6 +437,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("0");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -444,6 +455,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -461,6 +473,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -478,6 +491,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
@@ -495,6 +509,7 @@ public class MainActivity extends AppCompatActivity {
                     field.setText("");
                     Checker = true;
                     thereIsEq = false;
+                    formulaSetChecker = false;
                 }
                 bread.setVisibility(View.INVISIBLE);
             }
